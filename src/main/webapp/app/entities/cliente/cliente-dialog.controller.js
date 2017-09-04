@@ -18,8 +18,10 @@
         vm.$onInit = onInit;
         vm.enderecos = [];
         var dataAtual = new Date();
+        var dataMaxima = new Date(dataAtual.getFullYear()-17, dataAtual.getMonth(), dataAtual.getDate());
         vm.dateOptions = {
-            maxDate: new Date(dataAtual.getDay(),dataAtual.getMonth(),dataAtual.getYear()-1)
+            maxDate: dataMaxima,
+            initDate: dataMaxima
         }
 
         $q.all([vm.cliente.$promise, vm.enderecos.$promise]).then(function() {
