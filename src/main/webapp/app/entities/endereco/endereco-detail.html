@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span>Endereco</span> {{vm.endereco.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Logradouro</span></dt>
+        <dd>
+            <span>{{vm.endereco.logradouro}}</span>
+        </dd>
+        <dt><span>Cidade</span></dt>
+        <dd>
+            <span>{{vm.endereco.cidade}}</span>
+        </dd>
+        <dt><span>Cep</span></dt>
+        <dd>
+            <span>{{vm.endereco.cep}}</span>
+        </dd>
+        <dt><span>Estado</span></dt>
+        <dd>
+            <a ui-sref="estado-detail({id:vm.endereco.estadoId})">{{vm.endereco.estadoId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="endereco-detail.edit({id:vm.endereco.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

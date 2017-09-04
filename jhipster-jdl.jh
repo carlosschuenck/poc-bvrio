@@ -1,0 +1,37 @@
+entity Cliente {
+	nome String,
+    email String,
+    dataNascimento LocalDate
+}
+
+entity Endereco {
+	id Long,
+	logradouro String,
+	cidade String,
+    cep String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Estado {
+	id Long,
+	nome String,
+	uf String
+}
+/*Relacionamento*/
+relationship OneToOne {
+	Cliente{endereco} to Endereco{cliente}
+}
+
+relationship OneToMany {
+     Estado to Endereco{estado}
+}
+
+
+paginate Cliente with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Cliente, Endereco, Estado
+

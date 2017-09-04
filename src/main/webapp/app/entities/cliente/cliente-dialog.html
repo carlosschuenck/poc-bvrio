@@ -1,0 +1,74 @@
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myClienteLabel">{{vm.cliente.id ? 'Edição de Cliente' : 'Cadastro de Cliente'}}</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label class="control-label" for="field_nome">Nome</label>
+            <input type="text" class="form-control" name="nome" id="field_nome" maxlength="40" ng-maxlength="40" ng-required="true"
+                    ng-model="vm.cliente.nome"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_email">E-mail</label>
+            <input type="text" class="form-control" name="email" id="field_email" maxlength="20" ng-maxlength="20" ng-required="true" ng-model="vm.cliente.email"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_dataNascimento">Data de Nascimento</label>
+                <div class="input-group">
+                    <input id="field_dataNascimento" type="text" class="form-control"
+                           ng-click="vm.openCalendar('dataNascimento')"]
+                           datepicker-options="vm.dateOptions"
+                           name="dataNascimento" uib-datepicker-popup="dd/MM/yyyy"
+                           ng-model="vm.cliente.dataNascimento" is-open="vm.datePickerOpenStatus.dataNascimento" ng-required="true"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dataNascimento')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <legend>Endereço</legend>
+
+        <div class="form-group">
+            <label class="control-label" for="field_cep">CEP</label>
+            <input type="text"  class="form-control" name="nome" id="field_cep" ng-maxlength="9" maxlength="9" ng-required="true"
+                   ng-model="vm.cliente.endereco.cep"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="field_estado">Estado</label>
+            <select class="form-control" id="field_estado" name="estado"
+                    ng-model="vm.cliente.endereco.estado.id" ng-options="estado.id as estado.nome for estado in vm.estados | orderBy:'uf'">
+                <option value="Selecione um estado"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_cidade">Cidade</label>
+            <input type="text" class="form-control" name="nome" id="field_cidade" maxlength="40" ng-maxlength="40" ng-required="true"
+                   ng-model="vm.cliente.endereco.cidade"
+            />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_logradouro">Endereço</label>
+            <input type="text" class="form-control" name="nome" id="field_logradouro"  maxlength="40" ng-maxlength="40" ng-required="true"
+                   ng-model="vm.cliente.endereco.logradouro"
+            />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

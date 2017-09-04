@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "endereco",
+            "otherEntityName": "endereco",
+            "otherEntityRelationshipName": "estado"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "uf",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170901030001",
+    "javadoc": "not an ignored comment",
+    "entityTableName": "estado",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

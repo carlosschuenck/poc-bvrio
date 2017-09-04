@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "endereco"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "estado",
+            "otherEntityName": "estado",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "logradouro",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cidade",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cep",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170901030000",
+    "entityTableName": "endereco",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no"
+}

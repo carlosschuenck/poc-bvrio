@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span>Detalhes do Cliente</span></h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Nome:</span></dt>
+        <dd>
+            <span>{{vm.cliente.nome}}</span>
+        </dd>
+        <dt><span>Email:</span></dt>
+        <dd>
+            <span>{{vm.cliente.email}}</span>
+        </dd>
+        <dt><span>Data de Nascimento:</span></dt>
+        <dd>
+            <span>{{vm.cliente.dataNascimento | date:'dd/MM/yyyy'}}</span>
+        </dd>
+
+        <dt><span>Estado:</span></dt>
+        <dd>
+            <span>{{vm.cliente.endereco.estado.nome}}</span>
+        </dd>
+        <dt><span>Cidade:</span></dt>
+        <dd>
+            <span>{{vm.cliente.endereco.cidade}}</span>
+        </dd>
+        <dt><span>Endereço:</span></dt>
+        <dd>
+            <span>{{vm.cliente.endereco.logradouro}}</span>
+        </dd>
+        <dt><span>CEP:</span></dt>
+        <dd>
+            <span>{{vm.cliente.endereco.cep}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="cliente-detail.edit({id:vm.cliente.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

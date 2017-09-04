@@ -1,0 +1,65 @@
+<div>
+    <h2>Clientes</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="cliente.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Cadastrar Cliente
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" ng-show="vm.clientes.length">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="nome"><span>Nome</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="email"><span>E-mail</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dataNascimento"><span>Data de Nascimento</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="enderecoId"><span>Endereço</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cliente in vm.clientes track by cliente.id">
+                    <td>{{cliente.nome}}</td>
+                    <td>{{cliente.email}}</td>
+                        <td>{{cliente.dataNascimento | date:'dd/MM/yyyy'}}</td>
+                    <td>
+                        <a ui-sref="endereco-detail({id:cliente.enderecoId})">{{cliente.enderecoId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="cliente-detail({id:cliente.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="cliente.edit({id:cliente.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="cliente.delete({id:cliente.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center" ng-show="vm.clientes.length">
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

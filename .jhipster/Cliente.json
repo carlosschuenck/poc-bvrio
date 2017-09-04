@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "endereco",
+            "otherEntityName": "endereco",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cliente"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dataNascimento",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170901025959",
+    "entityTableName": "cliente",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "no"
+}
