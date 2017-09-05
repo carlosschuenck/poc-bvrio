@@ -18,7 +18,7 @@
         vm.$onInit = onInit;
         vm.enderecos = [];
         var dataAtual = new Date();
-        var dataMaxima = new Date(dataAtual.getFullYear()-17, dataAtual.getMonth(), dataAtual.getDate());
+        var dataMaxima = new Date(dataAtual.getFullYear()-16, dataAtual.getMonth(), dataAtual.getDate());
         vm.dateOptions = {
             maxDate: dataMaxima,
             initDate: dataMaxima
@@ -65,7 +65,8 @@
             vm.isSaving = false;
         }
 
-        function onSaveError () {
+        function onSaveError (erro) {
+            console.log("TESTE", erro)
             vm.isSaving = false;
         }
 

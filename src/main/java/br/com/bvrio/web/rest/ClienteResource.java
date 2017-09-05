@@ -1,5 +1,7 @@
 package br.com.bvrio.web.rest;
 
+import br.com.bvrio.service.ClienteService;
+import br.com.bvrio.web.rest.errors.CustomParameterizedException;
 import com.codahale.metrics.annotation.Timed;
 import br.com.bvrio.domain.Cliente;
 
@@ -36,13 +38,16 @@ public class ClienteResource {
 
     private static final String ENTITY_NAME = "cliente";
 
+    private ClienteService service;
+
     private final ClienteRepository clienteRepository;
 
     private final ClienteMapper clienteMapper;
 
-    public ClienteResource(ClienteRepository clienteRepository, ClienteMapper clienteMapper) {
+    public ClienteResource(ClienteRepository clienteRepository, ClienteMapper clienteMapper, ClienteService service) {
         this.clienteRepository = clienteRepository;
         this.clienteMapper = clienteMapper;
+        this.service = service;
     }
 
     /**
@@ -54,14 +59,13 @@ public class ClienteResource {
      */
     @PostMapping("/clientes")
     @Timed
-    public ResponseEntity<ClienteDTO> createCliente(@RequestBody ClienteDTO clienteDTO) throws URISyntaxException {
+    public ResponseEntity<ClienteDTO> createCliente(@RequestBody ClienteDTO clienteDTO) throws URISyntaxException{
         log.debug("REST request to save Cliente : {}", clienteDTO);
         if (clienteDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new cliente cannot already have an ID")).body(null);
         }
-        Cliente cliente = clienteMapper.toEntity(clienteDTO);
-        cliente = clienteRepository.save(cliente);
-        ClienteDTO result = clienteMapper.toDto(cliente);
+
+        ClienteDTO result = clienteMapper.toDto(service.save(clienteMapper.toEntity(clienteDTO)));
         return ResponseEntity.created(new URI("/api/clientes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);

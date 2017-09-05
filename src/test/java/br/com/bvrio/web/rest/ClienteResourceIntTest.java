@@ -75,7 +75,7 @@ public class ClienteResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        ClienteResource clienteResource = new ClienteResource(clienteRepository, clienteMapper);
+        ClienteResource clienteResource = new ClienteResource(clienteRepository, clienteMapper, null);
         this.restClienteMockMvc = MockMvcBuilders.standaloneSetup(clienteResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
