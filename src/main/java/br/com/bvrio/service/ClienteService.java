@@ -48,7 +48,7 @@ public class ClienteService {
         if(nonNull(cliente.getDataNascimento())){
             LocalDate dataNascimento = cliente.getDataNascimento().plusYears(16);
             LocalDate dataAtual = LocalDate.now();
-            if((dataAtual.isEqual(dataNascimento) || dataAtual.isAfter(cliente.getDataNascimento().plusYears(16)))){
+            if((dataAtual.isEqual(dataNascimento) || dataAtual.isBefore(cliente.getDataNascimento().plusYears(16)))){
                 throw new CustomParameterizedException("A idade do cliente não pode ser menor que 16 anos.");
             }
         }
