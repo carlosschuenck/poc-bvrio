@@ -27,7 +27,7 @@
                     {
                         type: 'danger',
                         msg: message,
-                        timeout: 5000,
+                        timeout: 20000,
                         toast: AlertService.isToast(),
                         scoped: true
                     },

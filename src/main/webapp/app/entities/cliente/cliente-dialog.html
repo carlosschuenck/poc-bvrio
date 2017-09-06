@@ -23,8 +23,10 @@
                     <input id="field_dataNascimento" type="text" class="form-control"
                            ng-click="vm.openCalendar('dataNascimento')"]
                            datepicker-options="vm.dateOptions"
-                           name="dataNascimento" uib-datepicker-popup="dd/MM/yyyy"
-                           ng-model="vm.cliente.dataNascimento" is-open="vm.datePickerOpenStatus.dataNascimento" ng-required="true"
+                           name="dataNascimento"
+                           uib-datepicker-popup="dd/MM/yyyy"
+                           ng-model="vm.cliente.dataNascimento"
+                           is-open="vm.datePickerOpenStatus.dataNascimento"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dataNascimento')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -36,7 +38,7 @@
 
         <div class="form-group">
             <label class="control-label" for="field_cep">CEP</label>
-            <input type="text"  class="form-control" name="nome" id="field_cep" ng-maxlength="9" maxlength="9" ng-required="true"
+            <input type="text" ng-change="vm.buscarPorCep()"  class="form-control" name="nome" id="field_cep" ng-maxlength="9" maxlength="9" ng-required="true"
                    ng-model="vm.cliente.endereco.cep"
             />
         </div>
@@ -44,7 +46,8 @@
         <div class="form-group">
             <label for="field_estado">Estado</label>
             <select class="form-control" id="field_estado" name="estado"
-                    ng-model="vm.cliente.endereco.estado.id" ng-options="estado.id as estado.nome for estado in vm.estados | orderBy:'uf'">
+                    ng-required="true"
+                    ng-model="vm.cliente.endereco.estado" ng-options="estado as estado.nome for estado in vm.estados | orderBy:'uf'">
                 <option value="Selecione um estado"></option>
             </select>
         </div>

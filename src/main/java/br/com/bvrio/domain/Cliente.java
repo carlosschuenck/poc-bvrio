@@ -12,7 +12,7 @@ import java.util.Objects;
  * A Cliente.
  */
 @Entity
-@Table(name = "cliente", uniqueConstraints = { @UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "nome")})
+@Table(name = "cliente", uniqueConstraints = { @UniqueConstraint(columnNames = "email")})
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Cliente implements Serializable {
 

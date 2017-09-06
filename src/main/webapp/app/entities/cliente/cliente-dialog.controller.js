@@ -5,9 +5,9 @@
         .module('bvrioApp')
         .controller('ClienteDialogController', ClienteDialogController);
 
-    ClienteDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Cliente', 'Endereco', 'Estado'];
+    ClienteDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Cliente', 'Endereco', 'Estado','Cep'];
 
-    function ClienteDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Cliente, Endereco, Estado) {
+    function ClienteDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Cliente, Endereco, Estado, Cep) {
         var vm = this;
 
         vm.cliente = entity;
@@ -44,6 +44,36 @@
             });
         }
 
+        vm.buscarPorCep = buscarPorCep;
+        function buscarPorCep(){
+            if(vm.cliente.endereco.cep !== undefined && vm.cliente.endereco.cep !== null && vm.cliente.endereco.cep.length > 7){
+                Cep.query(
+                    {
+                        cep: vm.cliente.endereco.cep
+                    },
+                    function (response) {
+                        if(response.endereco !== undefined && response.endereco !== null && response.endereco !== ""){
+                            vm.cliente.endereco.logradouro = response.endereco;
+                        }
+
+                        if(response.cidade!== undefined && response.cidade !== null && response.cidade !== ""){
+                            vm.cliente.endereco.cidade = response.cidade;
+                        }
+
+                        if(response.uf !== undefined && response.uf !== null && response.uf !== ""){
+                            vm.estados.forEach(function (estado) {
+                                if(estado.uf == response.uf){
+                                    vm.cliente.endereco.estado = estado;
+                                }
+                            });
+                        }
+                    },
+                    function (erro) {
+                        console.log("CEP ERRO",erro);
+                    }
+                );
+            }
+        }
 
         function clear () {
             $uibModalInstance.dismiss('cancel');
@@ -66,7 +96,6 @@
         }
 
         function onSaveError (erro) {
-            console.log("TESTE", erro)
             vm.isSaving = false;
         }
 
